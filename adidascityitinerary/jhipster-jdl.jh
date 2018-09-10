@@ -1,0 +1,13 @@
+entity Itinerary{
+    id Long
+    originCity String
+    destinationCity String
+    departureTime ZonedDateTime
+    arrivalTime ZonedDateTime
+}
+
+filter Itinerary
+
+dto * with mapstruct
+
+service all with serviceImpl

@@ -1,0 +1,29 @@
+version: "2.1"
+
+services:
+
+  neo4j:
+    image: neo4j:3.0
+    container_name: neo4j-adidas
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - $PWD/neo4j/data:/data:Z
+      - $PWD/neo4j/logs:/logs:Z
+
+  db:
+    image: postgres
+    container_name: postgres-adidas
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test
+    volumes:
+      - $PWD/postgres-data:/var/lib/postgresql/data
+
+  eureka:
+    image: jhipster/jhipster-registry
+    container_name: eureka-adidas
+    ports:
+      - "8761:8761"

@@ -1,0 +1,52 @@
+version: "2.1"
+
+services:
+
+  neo4j:
+    image: neo4j:3.0
+    container_name: neo4j-adidas
+    ports:
+      - 7474:7474
+      - 7687:7687
+    volumes:
+      - $PWD/neo4j/data:/data:Z
+      - $PWD/neo4j/logs:/logs:Z
+
+  postgres:
+    image: postgres
+    container_name: postgres-adidas
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: test
+    volumes:
+      - $PWD/postgres-data:/var/lib/postgresql/data
+
+  eureka:
+    image: jhipster/jhipster-registry
+    container_name: eureka-adidas
+    ports:
+      - "8761:8761"
+
+  adidascitysearch:
+    image: mvppoa/adidascitysearch:latest
+    container_name: adidascitysearch
+    ports:
+      - "8081:8081"
+    environment:
+      - JHIPSTER_SLEEP=10
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:admin@172.17.0.1:8761/eureka/
+      - SPRING_DATA_NEO4J_URI=http://172.17.0.1:7474
+      - SPRING_APPLICATION_CLOUD_CONFIG_URI=http://admin:admin@172.17.0.1:8761/config
+
+  adidascityitinerary:
+    image: mvppoa/adidascityitinerary:latest
+    container_name: adidascityitinerary
+    ports:
+      - "8082:8082"
+    environment:
+      - JHIPSTER_SLEEP=10
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:admin@172.17.0.1:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.17.0.1:5432/postgres
+      - SPRING_APPLICATION_CLOUD_CONFIG_URI=http://admin:admin@172.17.0.1:8761/config
+
