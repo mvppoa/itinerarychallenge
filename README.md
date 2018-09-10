@@ -34,12 +34,12 @@ In order to execute a few commands you may try the following commands:
 
 The list of cities you may find bellow in the database load script.
 
-#####Fetch the shortest route between two cities:
+##### Fetch the shortest route between two cities:
 ```
 GET http://localhost:8081/api/cities/path?origin=Palo Alto&destination=Milpitas
 ```
 
-#####Add a new itinerary using the shortest route
+##### Add a new itinerary using the shortest route
 ```
 POST http://localhost:8082/api/itineraries
 
@@ -50,7 +50,7 @@ POST http://localhost:8082/api/itineraries
 }
 ```
 
-#####Fetching an itinerary
+##### Fetching an itinerary
 ```
 GET http://localhost:8082/api/itineraries/1051
 ```
@@ -66,7 +66,7 @@ docker-compose up -d
 There is already some data loaded up in the project. 
 If you want to start fresh database you may use the following commands:
 
-####Neo4J
+#### Neo4J
 ```
 CREATE (n01:City {name: 'Mountain View', time_zone: 'GMT-7'}),
  (n02:City {name: 'Palo Alto', timeZone: 'GMT-7'}),
@@ -103,7 +103,7 @@ CREATE (n01:City {name: 'Mountain View', time_zone: 'GMT-7'}),
  (n19)-[:connect_to {travel_time: 500}]->(n18) // cptn - snyl
 ```
 
-####Postgres
+#### Postgres
 ```
 INSERT INTO public.itinerary (id, origin_city, destination_city, departure_time, arrival_time) VALUES (111051, 'Palo Alto', 'Milpitas', '2018-09-10 07:00:00.001000', '2018-09-10 07:13:20.001000');
 INSERT INTO public.itinerary (id, origin_city, destination_city, departure_time, arrival_time) VALUES (111101, 'Milpitas', 'Palo Alto', '2018-09-10 07:00:00.001000', '2018-09-10 07:57:10.001000');
@@ -124,7 +124,7 @@ If you wish to run the ms without docker, use the docker-file-lite.yml file in o
 - Add elasticsearch for itinerary ms 
 - Pipeline proposal. I was thinking of creating a model based on https://www.atlassian.com/continuous-delivery/continuous-delivery-workflows-with-feature-branching-and-gitflow
 
-##References
+## References
 - https://neo4j.com/graphgist/learning-cypher-with-san-francisco-bay-map
 - https://spring.io/guides/gs/accessing-data-neo4j/
 - https://www.jhipster.tech/microservices-architecture/
