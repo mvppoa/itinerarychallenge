@@ -63,6 +63,16 @@ Download the project to your machine and run the command
 docker-compose up -d
 ```
 
+To check data on neo4j, use the following url:
+http://localhost:7474/browse/
+Username: neo4j
+Password: test
+
+To check jhipster's eureka service discovery implementation:
+http://localhost:8761/
+Username: admin
+Password: admin
+
 There is already some data loaded up in the project. 
 If you want to start fresh database you may use the following commands:
 
